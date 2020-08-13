@@ -1,0 +1,21 @@
+version: "3"
+services:
+  api:
+    image: api
+    ports:
+      - "8080:8080"
+    networks:
+      - api-mysql
+    depends_on:
+      - mysqldb
+
+  mysqldb:
+    image: mysql:8
+    networks:
+      - api-mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=db_mysqldb
+
+networks:
+  api-mysql:
